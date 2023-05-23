@@ -1,0 +1,67 @@
+@use '../../sass/globals/variables' as var;
+@use '../../sass/globals/mixins' as mix;
+
+.uploadFormSection {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 80vh;
+	color: var.$gray-100;
+
+	.leftContainer {
+		padding: 2em;
+		background-color: var.$gray-600;
+
+		.back {
+			display: flex;
+			align-items: center;
+			gap: 0.3em;
+			font-size: 1.4em;
+			margin-bottom: 1em;
+
+			& > svg {
+				margin-top: 1px;
+			}
+		}
+
+		.previewImage {
+			width: 100%;
+		}
+	}
+
+	.form {
+		display: grid;
+		grid-template-rows: auto auto auto 1fr;
+		align-items: flex-start;
+		gap: 2em;
+		padding: 2em;
+		background-color: var.$gray-500;
+
+		.inputContainer {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5em;
+
+			& > label {
+				color: var.$gray-300;
+			}
+
+			& > input {
+				@include mix.input-text;
+				height: 36px;
+			}
+
+			& > span {
+				position: absolute;
+				bottom: -25px;
+				right: 10px;
+				color: red;
+			}
+		}
+		.uploadBtn {
+			@include mix.button-styles;
+			background: var.$gradient-purple;
+			align-self: flex-end;
+		}
+	}
+}
