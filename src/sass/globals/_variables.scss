@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+
+//fonts
+$font-primary: 'Kanit', sans-serif;
+
+//base colors
+$gray-700: #0d0d0d;
+$gray-600: #1a1a1a;
+$gray-500: #262626;
+$gray-400: #333333;
+$gray-300: #808080;
+$gray-200: #d9d9d9;
+$gray-100: #f2f2f2;
+
+//gradients
+$bg-rainbow: linear-gradient(
+	90deg,
+	rgba(131, 58, 180, 1) 0%,
+	rgba(29, 253, 77, 1) 50%,
+	rgba(252, 176, 69, 1) 100%
+);
+
+$gradient-purple: linear-gradient(
+	90deg,
+	rgba(94, 70, 248, 1) 0%,
+	rgba(192, 62, 254, 0.6671043417366946) 100%
+);

@@ -1,0 +1,48 @@
+@use '../../sass/globals/variables' as var;
+@use '../../sass/globals/mixins' as mix;
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var.$gray-100;
+
+	.leftContainer {
+		display: flex;
+		align-items: center;
+		gap: 2em;
+
+		h1 {
+			font-size: 2rem;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+
+			li {
+				display: inline;
+				margin-right: 1em;
+				border-bottom: 3px solid;
+				border-image-slice: 1;
+				border-image-source: var.$bg-rainbow;
+			}
+		}
+	}
+
+	.rightContainer {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+
+		.uploadButton {
+			@include mix.button-styles;
+			@include mix.primary-gradient-bg;
+		}
+
+		.loginButton {
+			@include mix.button-styles;
+			background-color: var.$gray-300;
+		}
+	}
+}

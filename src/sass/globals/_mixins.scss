@@ -1,0 +1,36 @@
+@use './variables' as var;
+
+@mixin primary-gradient-bg {
+	background: rgb(34, 193, 195);
+	background: linear-gradient(
+		0deg,
+		rgba(34, 193, 195, 1) 0%,
+		rgba(253, 187, 45, 1) 100%
+	);
+}
+
+@mixin secondary-gradient-bg {
+	background: rgb(78, 168, 222);
+	background: linear-gradient(
+		0deg,
+		rgba(78, 168, 222, 1) 15%,
+		rgba(94, 96, 206, 1) 96%
+	);
+}
+
+@mixin button-styles {
+	border-radius: 2px;
+	color: var.$gray-100;
+	min-height: 36px;
+	border: none;
+	padding: 0.5em 1.5em;
+	cursor: pointer;
+}
+
+@mixin input-text {
+	border: none;
+	border-radius: 4px;
+	background-color: var.$gray-100;
+	padding: 0 1em;
+	outline: none;
+}

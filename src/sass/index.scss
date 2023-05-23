@@ -1,0 +1,7 @@
+@use './base/normalize';
+@use './globals//variables' as var;
+@use './globals/mixins' as mixin;
+
+body {
+	background-color: var.$gray-600;
+}

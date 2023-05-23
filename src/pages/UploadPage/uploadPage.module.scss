@@ -1,0 +1,79 @@
+@use '../../sass/globals/mixins' as mix;
+@use '../../sass/globals/variables' as var;
+
+.uploadPage {
+	width: 1040px;
+	margin: 0 auto;
+
+	.nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		h1 {
+			font-size: 2rem;
+			color: var.$gray-100;
+		}
+	}
+}
+
+.uploadContainer {
+	@include mix.primary-gradient-bg;
+	border-radius: 6px;
+	height: 80vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var.$gray-100;
+	gap: 1em;
+
+	.title {
+		margin-top: 2em;
+		font-size: 36px;
+		font-weight: 300;
+	}
+
+	.textUpload {
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+
+	.uploadFile {
+		width: 430px;
+		// height: 180px;
+		background-color: rgba(255, 255, 255, 0.3);
+		color: var.$gray-100;
+		border-radius: 4px;
+		text-align: center;
+		padding: 2em 0 0;
+
+		.gifIcon {
+			background-color: var.$gray-100;
+			color: var.$gray-300;
+			width: fit-content;
+			border-radius: 10px;
+			text-align: center;
+			padding: 1em;
+			margin: 0 auto;
+		}
+
+		.selectButton {
+			@include mix.button-styles;
+			width: 100%;
+			background-color: rgba(255, 255, 255, 0.2);
+			margin-top: 1em;
+		}
+
+		.inputText {
+			@include mix.input-text;
+			height: 50px;
+			width: 90%;
+			margin-top: 0.5em;
+			margin-bottom: 1em;
+
+			&::-webkit-input-placeholder {
+				text-align: center;
+			}
+		}
+	}
+}

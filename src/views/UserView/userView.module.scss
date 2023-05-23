@@ -1,0 +1,39 @@
+@use '../../sass/globals/variables' as var;
+
+.userContainer {
+	display: grid;
+	grid-template-columns: auto 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 2em;
+	grid-auto-flow: row;
+	grid-template-areas:
+		'userImage userDetails userDetails'
+		'userImage userDetails userDetails';
+}
+
+.userImage {
+	grid-area: userImage;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+
+.userDetails {
+	grid-area: userDetails;
+	color: var.$gray-100;
+
+	.user {
+		h2 {
+			font-size: 2.5em;
+			margin: 0;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.personalGifsSection {
+		margin-top: 2em;
+	}
+}

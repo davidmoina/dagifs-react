@@ -1,0 +1,58 @@
+@use '../../sass/globals/mixins' as mix;
+@use '../../sass/globals/variables' as var;
+
+.container {
+	position: relative;
+	background-color: var.$gray-400;
+	color: var.$gray-100;
+	height: 36px;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	gap: 0.7em;
+	padding-right: 0.5em;
+	cursor: pointer;
+
+	.userAvatar {
+		width: 36px;
+		height: 36px;
+		border-radius: 2px;
+	}
+
+	.arrow {
+		font-size: 18px;
+	}
+
+	&:hover .arrow {
+		transform: rotate(180deg);
+	}
+
+	.menu {
+		position: absolute;
+		top: 38px;
+		height: 0;
+		width: 100%;
+		border-radius: 2px;
+		background-color: var.$gray-400;
+		overflow: hidden;
+		transition: height 0.3s ease-in-out;
+
+		p {
+			margin: 0.5em 1em;
+			padding: 0.2em;
+
+			&:hover {
+				background-color: var.$gray-300;
+			}
+		}
+
+		hr {
+			margin: 0 0.8em;
+		}
+	}
+
+	&:hover .menu,
+	&:focus-within .menu {
+		height: 160px;
+	}
+}

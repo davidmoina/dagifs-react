@@ -1,0 +1,5 @@
+@use '../../sass/globals/variables' as var;
+
+.title {
+	color: var.$gray-100;
+}
