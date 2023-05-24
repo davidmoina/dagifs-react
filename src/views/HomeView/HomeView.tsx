@@ -4,6 +4,7 @@ import { getAllGifs } from '../../api/gifsApi';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Gif } from '../../interfaces/gifs';
 import { CustomLoader } from '../../components/CustomLoader/CustomLoader';
+import { GifImage } from '../../components/GifImage/GifImage';
 
 export const HomeView = () => {
 	const {
@@ -41,11 +42,11 @@ export const HomeView = () => {
 				>
 					{gifs &&
 						gifs.map(({ image_url, title, _id }) => (
-							<img
-								className={styles.image}
+							<GifImage
 								key={_id}
-								src={image_url}
-								alt={title}
+								image_url={image_url}
+								title={title}
+								id={_id}
 							/>
 						))}
 				</InfiniteScroll>

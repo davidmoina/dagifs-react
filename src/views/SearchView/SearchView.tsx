@@ -16,9 +16,7 @@ export const SearchView = () => {
 	});
 
 	useEffect(() => {
-		if (gifsArr) {
-			refetch();
-		}
+		refetch();
 	}, [searchText]);
 
 	return (

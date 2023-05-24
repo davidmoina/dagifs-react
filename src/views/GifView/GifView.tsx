@@ -1,8 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import styles from './gifView.module.scss';
 import { FaHeart, FaShareAlt } from 'react-icons/fa';
 import { ImEmbed } from 'react-icons/im';
+import { useParams } from 'react-router-dom';
+import { getOneGif } from '../../api/gifsApi';
+import { BiLink } from 'react-icons/bi';
 
 const GifView = () => {
+	const { gifId } = useParams();
+
+	const { data } = useQuery({
+		queryKey: ['oneGif'],
+		queryFn: () => getOneGif(gifId || ''),
+	});
+
+	console.log(data);
+
 	return (
 		<>
 			<div className={styles.container}>
@@ -14,24 +27,28 @@ const GifView = () => {
 							alt=''
 						/>
 						<div className={styles.userInfo}>
-							<p>davidmoina</p>
-							<p>@davidmoina</p>
+							<p>
+								{data?.user?.display_name
+									? data?.user?.display_name
+									: data?.username}
+							</p>
+							<p>@{data?.username}</p>
 						</div>
 					</div>
-
-					<p>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum a
-						nostrum, ex nisi repellendus esse quis facilis quasi rerum impedit?
-					</p>
+					<div className={styles.sourceTitle}>
+						<h5>Source</h5>
+						<BiLink />
+					</div>
+					{data?.source && (
+						<a target='_blank' href={data.source} className={styles.source}>
+							{data.source}
+						</a>
+					)}
 				</aside>
 				<section className={styles.gifContent}>
 					<figure>
-						<figcaption className={styles.title}>Baby Thank You GIF</figcaption>
-						<img
-							className={styles.gifImg}
-							src='https://media2.giphy.com/media/BYoRqTmcgzHcL9TCy1/giphy.gif?cid=b0d27405xqnf6nxjkpjx5rq43q9u74awid7otko2rf0a0t1j&ep=v1_gifs_trending&rid=giphy.gif&ct=g'
-							alt=''
-						/>
+						<figcaption className={styles.title}>{data?.title}</figcaption>
+						<img className={styles.gifImg} src={data?.image_url} alt='' />
 					</figure>
 					<aside className={styles.gifAside}>
 						<div className={styles.option}>

@@ -5,6 +5,7 @@ import { InputsUpload } from '../../interfaces/inputsUpload';
 import { useMutation } from '@tanstack/react-query';
 import { addGif } from '../../api/gifsApi';
 import { useRef } from 'react';
+import { toast } from 'react-hot-toast';
 
 interface Props {
 	image: string | null;
@@ -20,13 +21,14 @@ export const UploadForm = ({ image, handleBack, currentFile }: Props) => {
 		formState: { errors },
 	} = useForm<InputsUpload>();
 
-	const addGifMutation = useMutation({
+	const { mutateAsync } = useMutation({
 		mutationFn: addGif,
 	});
 
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const onSubmit: SubmitHandler<InputsUpload> = async () => {
+		const toastId = toast.loading('Saving gif');
 		if (!formRef.current) {
 			throw new Error('No Data');
 		}
@@ -41,8 +43,21 @@ export const UploadForm = ({ image, handleBack, currentFile }: Props) => {
 			newFormData.append('image_url', image || '');
 		}
 
-		addGifMutation.mutate(newFormData);
-		reset();
+		await mutateAsync(newFormData)
+			.then(() => {
+				toast.success('Done', {
+					id: toastId,
+				});
+			})
+			.finally(() => {
+				reset();
+				handleBack();
+			})
+			.catch(() => {
+				toast.error('Error', {
+					id: toastId,
+				});
+			});
 	};
 
 	return (

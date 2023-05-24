@@ -16,8 +16,9 @@ export const Router = () => {
 					<Route path='/' element={<Layout />}>
 						<Route index element={<HomeView />} />
 						<Route path='/:tag' element={<CategoriesView />} />
-						<Route path='/gif' element={<GifView />} />
+						<Route path='/gif/:gifId' element={<GifView />} />
 						<Route path='/user' element={<UserView />} />
+						<Route path='/search' element={<SearchView />} />
 						<Route path='/search' element={<SearchView />} />
 					</Route>
 					<Route path='/upload' element={<UploadPage />} />

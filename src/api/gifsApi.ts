@@ -1,20 +1,36 @@
+import { Gif } from '../interfaces/gifs';
+import { User } from '../interfaces/user';
+
 const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
 export const getAllGifs = async ({ pageParam = 1 }) => {
 	const response = await fetch(`${baseUrl}/gifs/paginate?page=${pageParam}`);
 	const result = await response.json();
 
+	console.log(result);
+
+	return result;
+};
+
+export const getOneGif = async (id: string): Promise<Gif<User>> => {
+	const response = await fetch(`${baseUrl}/gifs/${id}`);
+	const result = await response.json();
+
 	return result;
 };
 
 export const addGif = async (data: FormData) => {
-	const response = await fetch(`${baseUrl}/gifs`, {
-		method: 'POST',
-		body: data,
-	});
-	const result = await response.json();
+	try {
+		const response = await fetch(`${baseUrl}/gifs`, {
+			method: 'POST',
+			body: data,
+		});
+		const result = await response.json();
 
-	return result.data;
+		return result.data;
+	} catch (error) {
+		return (error as Error).message;
+	}
 };
 
 export const getUserGifs = async (id: string) => {

@@ -29,10 +29,29 @@
 			}
 
 			.userInfo {
-				p {
+				& > p {
 					margin: 0;
 				}
 			}
+		}
+
+		.sourceTitle {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			font-size: 1.4em;
+			margin: 1em 0 0 0;
+
+			> h5 {
+				margin: 0;
+			}
+		}
+
+		.source {
+			display: block;
+			margin: 1em 0;
+			overflow-wrap: break-word;
+			color: var.$gray-100;
 		}
 	}
 

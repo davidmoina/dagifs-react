@@ -1,17 +1,13 @@
 import { useRef, ChangeEvent } from 'react';
 import styles from './searchBar.module.scss';
 import { ImSearch } from 'react-icons/im';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export const SearchBar = () => {
 	const debounceRef = useRef<number | undefined>();
-
-	const location = useLocation();
 	const navigate = useNavigate();
 
 	const [, setSearchParams] = useSearchParams();
-
-	console.log(location);
 
 	const onQueryChanged = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (debounceRef.current) {
