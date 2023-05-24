@@ -3,6 +3,7 @@ import styles from './homeView.module.scss';
 import { getAllGifs } from '../../api/gifsApi';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Gif } from '../../interfaces/gifs';
+import { CustomLoader } from '../../components/CustomLoader/CustomLoader';
 
 export const HomeView = () => {
 	const {
@@ -27,23 +28,28 @@ export const HomeView = () => {
 	return (
 		<>
 			<h2 className={styles.title}>All the gifs</h2>
-			<InfiniteScroll
-				dataLength={gifs.length}
-				hasMore={hasNextPage || isLoading}
-				next={() => fetchNextPage()}
-				loader={<p>Loading...</p>}
-				className={styles.gifsContainer}
-			>
-				{gifs &&
-					gifs.map(({ image_url, title, _id }) => (
-						<img
-							className={styles.image}
-							key={_id}
-							src={image_url}
-							alt={title}
-						/>
-					))}
-			</InfiniteScroll>
+
+			{isLoading ? (
+				<CustomLoader />
+			) : (
+				<InfiniteScroll
+					dataLength={gifs.length}
+					hasMore={hasNextPage || isLoading}
+					next={() => fetchNextPage()}
+					loader={<p>Loading...</p>}
+					className={styles.gifsContainer}
+				>
+					{gifs &&
+						gifs.map(({ image_url, title, _id }) => (
+							<img
+								className={styles.image}
+								key={_id}
+								src={image_url}
+								alt={title}
+							/>
+						))}
+				</InfiniteScroll>
+			)}
 		</>
 	);
 };

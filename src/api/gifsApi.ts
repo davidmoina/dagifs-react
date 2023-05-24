@@ -30,3 +30,12 @@ export const getFilteredGifs = async (tag: string) => {
 
 	return result.data;
 };
+
+export const getSearchGifs = async (text: string) => {
+	if (text.length < 3) return [];
+
+	const response = await fetch(`${baseUrl}/gifs/search?text=${text}`);
+	const result = await response.json();
+
+	return result;
+};

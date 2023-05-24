@@ -6,6 +6,7 @@ import GifView from '../views/GifView/GifView';
 import { UserView } from '../views/UserView/UserView';
 import { UploadPage } from '../pages/UploadPage/UploadPage';
 import { CategoriesView } from '../views/CategoriesView/CategoriesView';
+import { SearchView } from '../views/SearchView/SearchView';
 
 export const Router = () => {
 	return (
@@ -17,6 +18,7 @@ export const Router = () => {
 						<Route path='/:tag' element={<CategoriesView />} />
 						<Route path='/gif' element={<GifView />} />
 						<Route path='/user' element={<UserView />} />
+						<Route path='/search' element={<SearchView />} />
 					</Route>
 					<Route path='/upload' element={<UploadPage />} />
 				</Route>
