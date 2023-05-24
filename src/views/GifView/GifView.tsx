@@ -5,16 +5,21 @@ import { ImEmbed } from 'react-icons/im';
 import { useParams } from 'react-router-dom';
 import { getOneGif } from '../../api/gifsApi';
 import { BiLink } from 'react-icons/bi';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { toast } from 'react-hot-toast';
 
 const GifView = () => {
 	const { gifId } = useParams();
+	const currentUrl = window.location.href;
 
 	const { data } = useQuery({
 		queryKey: ['oneGif'],
 		queryFn: () => getOneGif(gifId || ''),
 	});
 
-	console.log(data);
+	const handleShare = () => {
+		toast.success('Copied to clipboard');
+	};
 
 	return (
 		<>
@@ -57,12 +62,16 @@ const GifView = () => {
 							</span>
 							<p>Favorite</p>
 						</div>
-						<div className={styles.option}>
-							<span>
-								<FaShareAlt />
-							</span>
-							<p>Share</p>
-						</div>
+
+						<CopyToClipboard text={currentUrl}>
+							<div onClick={handleShare} className={styles.option}>
+								<span>
+									<FaShareAlt />
+								</span>
+								<p>Share</p>
+							</div>
+						</CopyToClipboard>
+
 						<div className={styles.option}>
 							<span>
 								<ImEmbed />

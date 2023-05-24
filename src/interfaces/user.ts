@@ -3,6 +3,8 @@ export interface User {
 	display_name: string;
 	avatar_url: string;
 	username: string;
+}
+export interface userRegistered extends User {
 	email: string;
 	rol: string;
 	password: string;

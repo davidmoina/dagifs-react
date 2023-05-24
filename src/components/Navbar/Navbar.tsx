@@ -1,9 +1,13 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { LoggedButton } from '../LoggedButton/LoggedButton';
 import styles from './navbar.module.scss';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 export const Navbar = () => {
 	const navigate = useNavigate();
+
+	const { user } = useContext(AuthContext);
 
 	return (
 		<nav className={styles.navbar}>
@@ -13,9 +17,9 @@ export const Navbar = () => {
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? styles.active : '')}
-							to='/animals'
+							to='/movie'
 						>
-							Animals
+							Movies
 						</NavLink>
 					</li>
 					<li>
@@ -44,7 +48,7 @@ export const Navbar = () => {
 					Upload
 				</button>
 				{/* <button className={styles.loginButton}>Log in</button> */}
-				<LoggedButton />
+				<LoggedButton username={user?.username} image={user?.avatar_url} />
 			</div>
 		</nav>
 	);
