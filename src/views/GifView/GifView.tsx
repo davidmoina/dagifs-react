@@ -4,13 +4,22 @@ import { FaHeart, FaShareAlt } from 'react-icons/fa';
 import { ImEmbed } from 'react-icons/im';
 import { useParams } from 'react-router-dom';
 import { getOneGif } from '../../api/gifsApi';
-import { BiLink } from 'react-icons/bi';
+import { BiLink, BiEditAlt } from 'react-icons/bi';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-hot-toast';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
+import { Modal } from '../../components/Modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import { EditForm } from '../../components/EditForm/EditForm';
 
 const GifView = () => {
 	const { gifId } = useParams();
 	const currentUrl = window.location.href;
+
+	const { isOpen, closeModal, openModal } = useModal();
+
+	const { user } = useContext(AuthContext);
 
 	const { data } = useQuery({
 		queryKey: ['oneGif'],
@@ -28,7 +37,7 @@ const GifView = () => {
 					<div className={styles.user}>
 						<img
 							className={styles.userAvatar}
-							src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCc5E-o4z6uPnn8qn_ITbrlxdJ5kdmbztmg&usqp=CAU'
+							src={data?.user?.avatar_url}
 							alt=''
 						/>
 						<div className={styles.userInfo}>
@@ -52,7 +61,15 @@ const GifView = () => {
 				</aside>
 				<section className={styles.gifContent}>
 					<figure>
-						<figcaption className={styles.title}>{data?.title}</figcaption>
+						<div className={styles.titleContainer}>
+							<figcaption className={styles.title}>{data?.title}</figcaption>
+
+							{user?.username === data?.user?.username && (
+								<div onClick={openModal}>
+									<BiEditAlt className={styles.editIcon} />
+								</div>
+							)}
+						</div>
 						<img className={styles.gifImg} src={data?.image_url} alt='' />
 					</figure>
 					<aside className={styles.gifAside}>
@@ -81,6 +98,18 @@ const GifView = () => {
 					</aside>
 				</section>
 			</div>
+			{isOpen && (
+				<Modal isOpen={isOpen} closeModal={closeModal}>
+					<EditForm
+						description={data?.description}
+						image={data?.image_url}
+						source={data?.source}
+						tags={data?.tags}
+						title={data?.title}
+						_id={data?._id}
+					/>
+				</Modal>
+			)}
 		</>
 	);
 };

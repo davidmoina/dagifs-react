@@ -8,4 +8,5 @@ export interface Gif<T> {
 	user?: T;
 	source: string;
 	giphyId?: string;
+	tags?: string[];
 }

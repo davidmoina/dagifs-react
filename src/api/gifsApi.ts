@@ -1,4 +1,5 @@
 import { Gif } from '../interfaces/gifs';
+import { InputsUpload } from '../interfaces/inputsUpload';
 import { User } from '../interfaces/user';
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL;
@@ -54,4 +55,40 @@ export const getSearchGifs = async (text: string) => {
 	const result = await response.json();
 
 	return result;
+};
+
+export const editGif = async ({
+	id,
+	data,
+}: {
+	id: string;
+	data: InputsUpload;
+}) => {
+	try {
+		const response = await fetch(`${baseUrl}/gifs/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		});
+		const result = await response.json();
+
+		return result;
+	} catch (error) {
+		return (error as Error).message;
+	}
+};
+
+export const deleteGif = async (id: string) => {
+	try {
+		const response = await fetch(`${baseUrl}/gifs/${id}`, {
+			method: 'DELETE',
+		});
+		const result = await response.json();
+
+		return result;
+	} catch (error) {
+		return (error as Error).message;
+	}
 };
