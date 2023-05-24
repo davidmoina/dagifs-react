@@ -17,9 +17,13 @@
 			gap: 0.3em;
 			font-size: 1.4em;
 			margin-bottom: 1em;
+			cursor: pointer;
 
 			& > svg {
 				margin-top: 1px;
+			}
+			& > span {
+				font-size: 0.8em;
 			}
 		}
 
@@ -30,7 +34,7 @@
 
 	.form {
 		display: grid;
-		grid-template-rows: auto auto auto 1fr;
+		grid-template-rows: auto auto auto auto 1fr;
 		align-items: flex-start;
 		gap: 2em;
 		padding: 2em;

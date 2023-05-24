@@ -1,7 +1,14 @@
 import styles from './userView.module.scss';
 import { GifsContainer } from '../../container/GifsContainer/GifsContainer';
+import { useQuery } from '@tanstack/react-query';
+import { getUserGifs } from '../../api/gifsApi';
 
 export const UserView = () => {
+	const { data: userGifs } = useQuery({
+		queryKey: ['userGifs'],
+		queryFn: () => getUserGifs('646cfc7f4ce2a456edc9e0ec'),
+	});
+
 	return (
 		<div className={styles.userContainer}>
 			<aside className={styles.userImage}>
@@ -13,8 +20,8 @@ export const UserView = () => {
 					<p>@davidmoina</p>
 				</div>
 				<div className={styles.personalGifsSection}>
-					<h3 className={styles.title}>All the gifs</h3>
-					<GifsContainer />
+					<h3 className={styles.title}>All your gifs</h3>
+					<GifsContainer data={userGifs} />
 				</div>
 			</section>
 		</div>

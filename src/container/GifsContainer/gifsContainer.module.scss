@@ -1,8 +1,9 @@
-.gifsContainer {
-	columns: 5 250px;
-	column-gap: 0.5em;
+@use '../../sass/globals/mixins' as mix;
 
-	img {
+.gifsContainer {
+	@include mix.gifs-display;
+
+	.image {
 		max-width: 100%;
 		margin-bottom: 0.5em;
 		display: block;

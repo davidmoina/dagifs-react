@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './loggedButton.module.scss';
 import { FiChevronDown } from 'react-icons/fi';
 
 export const LoggedButton = () => {
+	const navigate = useNavigate();
+
 	return (
 		<div className={styles.container}>
 			<img
@@ -9,7 +12,7 @@ export const LoggedButton = () => {
 				src='https://media.giphy.com/avatars/default1/200h.gif'
 				alt=''
 			/>
-			<span>davidmoina</span>
+			<span onClick={() => navigate('/user')}>davidmoina</span>
 			<FiChevronDown className={styles.arrow} />
 			<div className={styles.menu}>
 				<p>Collections</p>

@@ -1,5 +1,17 @@
+@use '../../sass/globals/mixins' as mix;
 @use '../../sass/globals/variables' as var;
 
 .title {
 	color: var.$gray-100;
+}
+
+.gifsContainer {
+	@include mix.gifs-display;
+
+	.image {
+		max-width: 100%;
+		margin-bottom: 0.5em;
+		display: block;
+		border-radius: 4px;
+	}
 }

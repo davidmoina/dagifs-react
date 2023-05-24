@@ -2,12 +2,15 @@ import { ChangeEvent, useRef, useState } from 'react';
 import { LoggedButton } from '../../components/LoggedButton/LoggedButton';
 import styles from './uploadPage.module.scss';
 import { UploadForm } from '../../components/UploadForm/UploadForm';
+import { useNavigate } from 'react-router-dom';
 
 export const UploadPage = () => {
 	const [fileName, setFileName] = useState<string>('Upload a gif');
 	const [image, setImage] = useState<string | null>(null);
-	const [currentFile, setCurrentFile] = useState<File>();
+	const [currentFile, setCurrentFile] = useState<File | null>(null);
 	const [showForm, setShowForm] = useState<boolean>(true);
+
+	const navigate = useNavigate();
 
 	const inputFile = useRef<HTMLInputElement>(null);
 
@@ -33,8 +36,6 @@ export const UploadPage = () => {
 		}
 	};
 
-	console.log(image);
-
 	const handleClick = () => {
 		if (!inputFile.current) {
 			return;
@@ -44,45 +45,17 @@ export const UploadPage = () => {
 
 	const handleBack = () => {
 		setShowForm(false);
+		setImage(null);
+		setFileName('Upload a gif');
+		setCurrentFile(null);
 	};
 
 	return (
 		<main className={styles.uploadPage}>
 			<nav className={styles.nav}>
-				<h1>DAGIFS</h1>
+				<h1 onClick={() => navigate('/')}>DAGIFS</h1>
 				<LoggedButton />
 			</nav>
-			{/* <section className={styles.uploadContainer}>
-				<h2 className={styles.title}>GIF Upload</h2>
-				<p className={styles.textUpload}>
-					Upload your collection to share everywhere else.
-				</p>
-				<div className={styles.uploadFile}>
-					<div className={styles.gifIcon}>
-						<span>GIF</span>
-					</div>
-					<p>{fileName}</p>
-					<button className={styles.selectButton} onClick={handleClick}>
-						Choose a file
-					</button>
-					<input
-						ref={inputFile}
-						onChange={handleFile}
-						type='file'
-						accept='.gif'
-						hidden
-					/>
-				</div>
-				<div className={styles.uploadFile}>
-					<h4 className={styles.textUpload}>Any url</h4>
-					<p>We support media URLs</p>
-					<input
-						className={styles.inputText}
-						type='text'
-						placeholder='Enter a GIF URL'
-					/>
-				</div>
-			</section> */}
 			{showForm && image ? (
 				<UploadForm
 					handleBack={handleBack}

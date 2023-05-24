@@ -5,6 +5,7 @@ import { HomeView } from '../views/HomeView/HomeView';
 import GifView from '../views/GifView/GifView';
 import { UserView } from '../views/UserView/UserView';
 import { UploadPage } from '../pages/UploadPage/UploadPage';
+import { CategoriesView } from '../views/CategoriesView/CategoriesView';
 
 export const Router = () => {
 	return (
@@ -13,6 +14,7 @@ export const Router = () => {
 				<Route element={<PrivateRoutes />}>
 					<Route path='/' element={<Layout />}>
 						<Route index element={<HomeView />} />
+						<Route path='/:tag' element={<CategoriesView />} />
 						<Route path='/gif' element={<GifView />} />
 						<Route path='/user' element={<UserView />} />
 					</Route>

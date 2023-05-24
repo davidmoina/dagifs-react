@@ -34,3 +34,9 @@
 	padding: 0 1em;
 	outline: none;
 }
+
+@mixin gifs-display {
+	columns: 5 250px;
+	column-gap: 0.5em;
+	margin-bottom: 2em;
+}
