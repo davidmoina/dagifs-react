@@ -18,6 +18,7 @@ export const HomeView = () => {
 		getNextPageParam: lastPage => {
 			return lastPage.nextPage;
 		},
+		refetchOnWindowFocus: false,
 	});
 
 	const gifs: Gif<string>[] =

@@ -1,8 +1,9 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useContext, useRef, useState } from 'react';
 import { LoggedButton } from '../../components/LoggedButton/LoggedButton';
 import styles from './uploadPage.module.scss';
 import { UploadForm } from '../../components/UploadForm/UploadForm';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext/AuthContext';
 
 export const UploadPage = () => {
 	const [fileName, setFileName] = useState<string>('Upload a gif');
@@ -24,6 +25,8 @@ export const UploadPage = () => {
 			setShowForm(true);
 		}
 	};
+
+	const { user } = useContext(AuthContext);
 
 	const handleUrl = (e: ChangeEvent<HTMLInputElement>) => {
 		const regexUrl = new RegExp(/https?:\/\/[\w\-.]+\.\w{2,5}\/?\S*/);
@@ -54,7 +57,7 @@ export const UploadPage = () => {
 		<main className={styles.uploadPage}>
 			<nav className={styles.nav}>
 				<h1 onClick={() => navigate('/')}>DAGIFS</h1>
-				<LoggedButton />
+				<LoggedButton image={user?.avatar_url} username={user?.username} />
 			</nav>
 			{showForm && image ? (
 				<UploadForm
