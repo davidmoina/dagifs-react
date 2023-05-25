@@ -59,7 +59,6 @@ export const EditForm = ({
 	});
 
 	const onSubmit = (data: InputsUpload) => {
-		console.log(data);
 		if (!_id) throw new Error('No id');
 
 		mutate({ id: _id, data });
@@ -72,8 +71,6 @@ export const EditForm = ({
 
 		navigate('/user');
 	};
-
-	console.log(title, description);
 
 	return (
 		<section className={styles.uploadFormSection}>

@@ -43,21 +43,18 @@ export const UploadForm = ({ image, handleBack, currentFile }: Props) => {
 			newFormData.append('image_url', image || '');
 		}
 
-		await mutateAsync(newFormData)
-			.then(() => {
-				toast.success('Done', {
-					id: toastId,
-				});
-			})
-			.finally(() => {
-				reset();
-				handleBack();
-			})
-			.catch(() => {
-				toast.error('Error', {
-					id: toastId,
-				});
+		try {
+			await mutateAsync(newFormData);
+			toast.success('Done', {
+				id: toastId,
 			});
+			reset();
+			handleBack();
+		} catch (error) {
+			toast.error('Error', {
+				id: toastId,
+			});
+		}
 	};
 
 	return (

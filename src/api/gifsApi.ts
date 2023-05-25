@@ -4,12 +4,9 @@ import { User } from '../interfaces/user';
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
-export const getAllGifs = async ({ pageParam = 1 }) => {
+export const getAllGifs = async ({ pageParam = 0 }) => {
 	const response = await fetch(`${baseUrl}/gifs/paginate?page=${pageParam}`);
 	const result = await response.json();
-
-	console.log(result);
-
 	return result;
 };
 
