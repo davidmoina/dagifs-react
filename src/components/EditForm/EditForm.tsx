@@ -14,6 +14,7 @@ interface Props {
 	tags?: string[];
 	source?: string;
 	_id?: string;
+	closeModal: () => void;
 }
 
 export const EditForm = ({
@@ -23,6 +24,7 @@ export const EditForm = ({
 	tags,
 	source,
 	_id,
+	closeModal,
 }: Props) => {
 	const {
 		register,
@@ -62,6 +64,7 @@ export const EditForm = ({
 		if (!_id) throw new Error('No id');
 
 		mutate({ id: _id, data });
+		closeModal();
 	};
 
 	const onDelete = () => {

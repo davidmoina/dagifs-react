@@ -35,7 +35,7 @@ export const getUserGifs = async (id: string) => {
 	const response = await fetch(`${baseUrl}/gifs/user/${id}`);
 	const result = await response.json();
 
-	return result.data;
+	return result;
 };
 
 export const getFilteredGifs = async (tag: string) => {

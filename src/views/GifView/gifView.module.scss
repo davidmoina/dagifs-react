@@ -71,6 +71,11 @@
 
 			.editIcon {
 				font-size: 1.2rem;
+				cursor: pointer;
+
+				&:hover {
+					color: var.$color-primary;
+				}
 			}
 		}
 
@@ -103,6 +108,10 @@
 				&:hover {
 					color: var.$color-primary;
 				}
+			}
+
+			.liked {
+				color: var.$color-danger;
 			}
 
 			.views {

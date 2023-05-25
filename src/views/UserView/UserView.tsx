@@ -25,7 +25,9 @@ export const UserView = () => {
 				</div>
 				<div className={styles.personalGifsSection}>
 					<h3 className={styles.title}>All your gifs</h3>
-					<GifsContainer data={userGifs} />
+					<GifsContainer data={userGifs.data} />
+					<h3 className={styles.title}>Your favorites</h3>
+					<GifsContainer data={userGifs.favorites} />
 				</div>
 			</section>
 		</div>

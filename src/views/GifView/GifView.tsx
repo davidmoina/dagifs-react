@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import styles from './gifView.module.scss';
 import { FaHeart, FaShareAlt } from 'react-icons/fa';
 import { ImEmbed } from 'react-icons/im';
@@ -7,11 +7,12 @@ import { getOneGif } from '../../api/gifsApi';
 import { BiLink, BiEditAlt } from 'react-icons/bi';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-hot-toast';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 import { Modal } from '../../components/Modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { EditForm } from '../../components/EditForm/EditForm';
+import { addGifToUserFavorites } from '../../api/userApi';
 
 const GifView = () => {
 	const { gifId } = useParams();
@@ -20,14 +21,39 @@ const GifView = () => {
 	const { isOpen, closeModal, openModal } = useModal();
 
 	const { user } = useContext(AuthContext);
+	const [inFavorite, setInFavorite] = useState(
+		user?.favorites.includes(gifId || '')
+	);
+
+	const queryClient = useQueryClient();
 
 	const { data } = useQuery({
 		queryKey: ['oneGif'],
 		queryFn: () => getOneGif(gifId || ''),
 	});
 
+	const { mutate } = useMutation({
+		mutationFn: addGifToUserFavorites,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['user'] });
+		},
+	});
+
 	const handleShare = () => {
 		toast.success('Copied to clipboard');
+	};
+
+	const handleFavorite = () => {
+		if (!gifId || !user?._id) throw new Error('no ids');
+
+		if (inFavorite) {
+			toast.error('Removed from favorites');
+		} else {
+			toast.success('Added into Favorites');
+		}
+
+		setInFavorite(!inFavorite);
+		mutate({ gifId, userId: user._id });
 	};
 
 	return (
@@ -73,7 +99,10 @@ const GifView = () => {
 						<img className={styles.gifImg} src={data?.image_url} alt='' />
 					</figure>
 					<aside className={styles.gifAside}>
-						<div className={styles.option}>
+						<div
+							onClick={handleFavorite}
+							className={`${styles.option} ${inFavorite && styles.liked}`}
+						>
 							<span>
 								<FaHeart />
 							</span>
@@ -107,6 +136,7 @@ const GifView = () => {
 						tags={data?.tags}
 						title={data?.title}
 						_id={data?._id}
+						closeModal={closeModal}
 					/>
 				</Modal>
 			)}

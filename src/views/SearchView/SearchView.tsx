@@ -8,7 +8,6 @@ export const SearchView = () => {
 	const [searchParams] = useSearchParams();
 
 	const searchText = searchParams.get('text') || '';
-	console.log(searchText);
 
 	const { data: gifsArr, refetch } = useQuery({
 		queryKey: ['searchGifs'],

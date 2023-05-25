@@ -10,7 +10,6 @@ interface Props {
 
 export const AuthProvider = ({ children }: Props) => {
 	const [user, setUser] = useState<User | null>(null);
-	console.log(user);
 
 	const { data } = useQuery({
 		queryKey: ['user'],
