@@ -20,7 +20,7 @@ This application has been created for a technical test simulation developed in 3
 - react-router-dom: A routing library for React applications.
 - Sass: A CSS preprocessor that adds additional features and development conveniences.
 
-## Screenshots
+## 🖼️ Screenshots
 
 Here are some screenshots of the DAGIFS application:
 
@@ -29,8 +29,6 @@ Here are some screenshots of the DAGIFS application:
 ![Screenshot 2](./src/assets/screenshots/screenshot2.png)
 
 ![Screenshot 2](./src/assets/screenshots/screenshot3.png)
-
-## Installation
 
 ## ⚙️ Installation
 
