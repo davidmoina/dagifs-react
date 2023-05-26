@@ -1,6 +1,7 @@
 # DAGIFS
 
-DAGIFS is a web application that allows you to view and upload GIFs. With DAGIFS, you can explore a wide collection of GIFs, add them to your favorites, and search for GIFs by name. The application is developed using modern technologies such as React, TypeScript, Tanstack Query, Vite JS, react-router-dom, and Sass.
+DAGIFS is a web application inspired by GIPHY that allows you to view and upload GIFs. With DAGIFS, you can explore a wide collection of GIFs, add them to your favorites, and search for GIFs by name. The application is developed using modern technologies such as React, TypeScript, Tanstack Query, Vite JS, react-router-dom, and Sass.
+
 This application has been created for a technical test simulation developed in 3 days and is based on an already registered user.
 
 ## 🚀 Features
